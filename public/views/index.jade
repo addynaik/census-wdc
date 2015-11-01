@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    base(href='/')
+    title Starter Node and Angular
+    // CSS
+    link(href='libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+    // custom styles
+    // JS
+    script(src='libs/angular/angular.min.js')
+    script(src='libs/angular-route/angular-route.min.js')
+    // ANGULAR CUSTOM
+    script(src='js/app.js')
+  body(ng-app='sampleApp', ng-controller='NerdController')
+    .container
+      // HEADER
+      nav.navbar.navbar-inverse
+        .navbar-header
+          a.navbar-brand(href='/') Stencil: Node and Angular
+        // LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE
+        ul.nav.navbar-nav
+          li
+            a(href='/nerds') Nerds
+      // ANGULAR DYNAMIC CONTENT
+      div(ng-view='')
