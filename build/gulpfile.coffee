@@ -12,38 +12,47 @@ nodemon = require 'gulp-nodemon'
 
 parameters = require '../config/parameters.coffee'
 
+onError = (err)->
+  gutil.log err.message
+  this.end()
+
 gulp.task 'jade', ->
   gulp.src parameters.view_path + '/**/*.jade'
   .pipe jade pretty: true
+  .on 'error', onError
   .pipe gulp.dest parameters.dest.web_path + '/views'
-  .on 'error', gutil.log
+  .on 'error', onError
 
 gulp.task 'coffee', ->
   gulp.src parameters.js_path+'/**/*.coffee'
   .pipe coffee bare: true
+  .on 'error', onError
   .pipe concat parameters.js_main_file
   .pipe gulp.dest parameters.dest.web_path+'/js'
-  .on 'error', gutil.log
+  .on 'error', onError
 
 gulp.task 'less', ->
   gulp.src [parameters.style_main_file]
   .pipe less paths: [ path.join(__dirname), parameters.bower_components_path, parameters.themes_path ]
+  .on 'error', onError
   .pipe gulp.dest parameters.dest.web_path+'/styles'
-  .on 'error', gutil.log
+  .on 'error', onError
 
 gulp.task 'minify',
   ['bower','coffee'],
   ->
     gulp.src parameters.dest.web_path+'/js/**.js'
     .pipe uglify outSourceMap: true
+    .on 'error', onError
     .pipe gulp.dest parameters.dest.web_path+'/js'
-    .on 'error', gutil.log
+    .on 'error', onError
 
 gulp.task 'bower', ->
     gulp.src mainBowerFiles('**/*.js')
       .pipe concat parameters.bower_main_file
+      .on 'error', onError
       .pipe gulp.dest parameters.dest.web_path+'/js'
-      .on 'error', gutil.log
+      .on 'error', onError
 
 gulp.task 'build', ['jade','coffee','less','bower']
 
