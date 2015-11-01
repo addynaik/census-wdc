@@ -1,7 +1,7 @@
 angular.module 'censusApp', [
   'ngRoute'
   'appRoutes'
-  'MainCntl'
+  'DecennialModule'
   'NerdCntl'
   'NerdService'
 ]
