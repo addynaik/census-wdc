@@ -50,7 +50,7 @@ gulp.task 'build', ['jade','coffee','less','bower']
 gulp.task 'watch', ['build'], # After all build tasks are done
   ->
     gulp.watch parameters.web_path + '/**/*.coffee', ['coffee']
-    gulp.watch parameters.web_path + '/**/*.less', ['styles']
+    gulp.watch parameters.web_path + '/**/*.less', ['less']
     gulp.watch parameters.web_path + '/**/*.jade', ['jade']
 
 gulp.task 'dist', ['build','minify']
