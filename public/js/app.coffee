@@ -1,4 +1,4 @@
-angular.module 'sampleApp', [
+angular.module 'censusApp', [
   'ngRoute'
   'appRoutes'
   'MainCntl'
