@@ -13,7 +13,7 @@ nodemon = require 'gulp-nodemon'
 parameters = require '../config/parameters.coffee'
 
 gulp.task 'jade', ->
-  gulp.src parameters.view_path + '/*.jade'
+  gulp.src parameters.view_path + '/**/*.jade'
   .pipe jade pretty: true
   .pipe gulp.dest parameters.dest.web_path + '/views'
   .on 'error', gutil.log
