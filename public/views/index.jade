@@ -12,14 +12,13 @@ html(lang='en')
     // ANGULAR CUSTOM
     script(src='js/app.js')
   body(ng-app='sampleApp', ng-controller='NerdController')
-    .container
-      // HEADER
-      nav.navbar.navbar-inverse
+    // HEADER
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
         .navbar-header
           a.navbar-brand(href='/') Stencil: Node and Angular
-        // LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE
         ul.nav.navbar-nav
           li
             a(href='/nerds') Nerds
-      // ANGULAR DYNAMIC CONTENT
+    .container
       div(ng-view='')
