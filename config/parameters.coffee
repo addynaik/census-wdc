@@ -1,4 +1,5 @@
 web_path = 'public'
+vendor_path = 'vendor'
 
 config =
   dest:
@@ -12,6 +13,9 @@ config =
   js_path: web_path + '/js'
   js_main_file: 'app.js'
   view_path: web_path + '/views'
-  # bower_main_file: 'bower-vendor.js'
+  bower_main_file: 'bower-vendor.js'
+  bower_components_path: 'bower_components'
+  vendor_path: vendor_path
+  themes_path: vendor_path + '/themes'
 
 module.exports = config
