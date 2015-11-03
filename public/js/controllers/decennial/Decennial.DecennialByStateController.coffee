@@ -1,7 +1,5 @@
-# require '../data/data.coffee'
-
 angular
-  .module 'censusApp.Decennial', []
+  .module 'censusApp.Decennial'
   .controller 'DecennialByStateController', [
     '$scope'
     '$http'
