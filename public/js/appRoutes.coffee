@@ -6,7 +6,7 @@ angular.module('appRoutes', []).config [
     .when '/',
       templateUrl: 'views/decennial/by-state.html'
       controller: 'DecennialController'
-    .when '/decennial/by-state',
+    .when '/decennial',
       templateUrl: 'views/decennial/by-state.html'
       controller: 'DecennialController'
     $locationProvider.html5Mode true
