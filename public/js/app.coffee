@@ -1,5 +1,6 @@
-angular.module 'censusApp', [
-  'ngRoute'
-  'appRoutes'
-  'DecennialModule'
-]
+angular
+  .module 'censusApp', [
+    'ngRoute'
+    'censusApp.Routes'
+    'censusApp.Decennial'
+  ]
