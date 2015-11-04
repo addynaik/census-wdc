@@ -3,16 +3,20 @@ DecennialByStateController = (statesService) ->
   vm.states = [];
 
 
-  activateView = ->
-    getStates()
-    
-  getStates = () ->
-    statesService.getStates()
-      .then (data)->
-        vm.states = data
-        vm.selectedState = statesService.getState("24")
+  activateView = (states)->
+    vm.states = states
+    vm.selectedState = statesService.getState("24")
 
-  activateView()
+  getStates = ->
+    states = statesService.getStates()
+    if states.length == 0
+      statesService.downloadStates()
+        .then (data)->
+          activateView(data)
+    else
+      activateView(states)
+
+  getStates()
 
 
   # vm.states = statesService.getStates()

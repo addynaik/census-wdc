@@ -9,8 +9,8 @@ statesService = ($http)->
     return states[stateID]
 
   getStates = ->
-    return downloadStates()
-      .then getStatesValues
+    getStatesValues()
+
 
   downloadStates = ->
     parseStates = (response)->
@@ -24,6 +24,7 @@ statesService = ($http)->
 
     return $http.get '/json/states.json'
       .then parseStates
+      .then getStatesValues
       .catch parseStatesFailed
 
   class State
@@ -39,6 +40,7 @@ statesService = ($http)->
   return {
     getStates: getStates
     getState: getState
+    downloadStates: downloadStates
   }
 
 angular
