@@ -1,4 +1,4 @@
-.panel.panel-info
+.panel.panel-info(ng-controller="DecennialByStateController as vm")
   .panel-heading
     h3.panel-title Get Population Data by State
   .panel-body
@@ -7,7 +7,7 @@
         .form-group
           label.col-xs-4.control-label(for="state") State
           .col-xs-8
-            select#state.form-control(ng-model="selectedState" ng-options="state as state.name for state in states | orderBy:'name' track by state.id")
+            select#state.form-control(ng-model="vm.selectedState" ng-options="state as state.name for state in vm.states | orderBy:'name' track by state.id")
         .form-group#data-type
           label.col-xs-4.control-label Data Granularity
           .col-xs-8
