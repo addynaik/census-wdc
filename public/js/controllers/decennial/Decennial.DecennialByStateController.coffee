@@ -1,18 +1,29 @@
+DecennialByStateController = (statesService) ->
+  vm = this
+  vm.states = [];
+
+
+  activateView = ->
+    getStates()
+    
+  getStates = () ->
+    statesService.getStates()
+      .then (data)->
+        vm.states = data
+        vm.states
+
+  activateView()
+
+
+  # vm.states = statesService.getStates()
+  # # vm.selectedState = CensusData.getState("24")
+  #
+  # $("#state").change ->
+  #   console.log $("#state").val()
+  return
+
 angular
   .module 'censusApp.Decennial'
-  .controller 'DecennialByStateController', [
-    '$scope'
-    '$http'
-    ($scope,$http) ->
-      if CensusData.is_empty CensusData.getAllStates()
-        $http.get('/json/states.json').success(
-          (data)->
-            CensusData.populateStates data
-            $scope.states = CensusData.getAllStates()
-            $scope.selectedState = CensusData.getState("24")
-        )
+  .controller 'DecennialByStateController', DecennialByStateController
 
-      $("#state").change ->
-        console.log $("#state").val()
-      return
-  ]
+DecennialByStateController.$inject = ['statesService']
