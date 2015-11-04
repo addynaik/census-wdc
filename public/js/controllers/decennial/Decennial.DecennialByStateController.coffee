@@ -10,7 +10,7 @@ DecennialByStateController = (statesService) ->
     statesService.getStates()
       .then (data)->
         vm.states = data
-        vm.states
+        vm.selectedState = statesService.getState("24")
 
   activateView()
 
