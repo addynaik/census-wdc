@@ -18,12 +18,6 @@ DecennialByStateController = (statesService) ->
 
   getStates()
 
-
-  # vm.states = statesService.getStates()
-  # # vm.selectedState = CensusData.getState("24")
-  #
-  # $("#state").change ->
-  #   console.log $("#state").val()
   return
 
 angular
