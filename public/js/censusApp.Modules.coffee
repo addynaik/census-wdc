@@ -1,2 +1,4 @@
 angular
-  .module 'censusApp.Decennial', []
+  .module 'tableau',[]
+angular
+  .module 'censusApp.Decennial', ['tableau']

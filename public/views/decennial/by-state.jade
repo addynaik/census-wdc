@@ -13,16 +13,16 @@
           .col-xs-8
             .radio
               label
-                input(type="radio" name="data-type" id="data-type-zip" value="zip" checked="checked") 
+                input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-zip" value="zip") 
                 | Population by Zip Code
             .radio
               label
-                input(type="radio" name="data-type" id="data-type-tract" value="tract") 
+                input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-tract" value="tract") 
                 | Population by County, Tract and Block Group
             .radio
               label
-                input(type="radio" name="data-type" id="data-type-congressional-district" value="congressional-district") 
+                input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-congressional-district" value="congressional-district") 
                 | Population by Congressional Districts
         .form-group
           .col-xs-8.col-xs-offset-4
-            button#get-data.btn.btn-success Get Data
+            button#get-data.btn.btn-success(ng-click="vm.getData()") Get Data
