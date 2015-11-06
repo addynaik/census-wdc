@@ -15,7 +15,8 @@ config =
   view_path: web_path + '/views'
   bower_main_file: 'bower-vendor.js'
   bower_components_path: 'bower_components'
-  vendor_path: vendor_path
+  vendor_main_file: 'vendor.js'
+  vendor_js_path: vendor_path + '/js'
   themes_path: vendor_path + '/themes'
 
 module.exports = config

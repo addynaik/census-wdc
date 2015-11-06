@@ -16,7 +16,8 @@ onError = (err)->
   gutil.log err.message
   this.end()
 
-gulp.task 'jade', ->
+gulp.task 'jade',
+  ['bower','vendor'],->
   gulp.src parameters.view_path + '/**/*.jade'
   .pipe jade pretty: true
   .on 'error', onError
@@ -54,7 +55,14 @@ gulp.task 'bower', ->
       .pipe gulp.dest parameters.dest.web_path+'/js'
       .on 'error', onError
 
-gulp.task 'build', ['jade','coffee','less','bower']
+gulp.task 'vendor', ->
+    gulp.src parameters.vendor_js_path+'/*.js'
+      .pipe concat parameters.vendor_main_file
+      .on 'error', onError
+      .pipe gulp.dest parameters.dest.web_path+'/js'
+      .on 'error', onError
+
+gulp.task 'build', ['jade','coffee','less','bower','vendor']
 
 gulp.task 'watch', ['build'], # After all build tasks are done
   ->
