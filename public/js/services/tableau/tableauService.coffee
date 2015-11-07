@@ -1,36 +1,39 @@
 tableauService = ($window)->
   tableau = $window.tableau
+  options =
+    columnHeaders:
+      fieldNames: []
+      fieldTypes: []
+    tableDataCallback: ->
+      return
 
-  dataConfiguration =
-    zip:
-      fieldNames: ['Population', 'Zipcode', 'State']
-      fieldTypes: ['integer', 'integer', 'string']
-    tract:
-      fieldNames: ["Population", "State", "County", "Tract", "Block Group"]
-      fieldTypes: ['integer', 'string', 'string', 'string', 'string']
-    congressionaldistricts:
-      fieldNames: ["Population", "State", "Congressional District", "Congressional District Code"]
-      fieldTypes: ['integer', 'string', 'string', 'string']
+  pushData = (dataToReturn, lastRecordIndicator, more)->
+    tableau.dataCallback dataToReturn, lastRecordIndicator, more
+    return
 
-  getData = (state, dataType)->
-    # tableau.connectionName = "Census Data for " + (tableau.connectionData = $("#state").val());
+  submit = (incolumnHeaders, intableDataCallback)->
+    options['columnHeaders'] = incolumnHeaders
+    options['tableDataCallback'] = intableDataCallback
+    initiateTableau()
     tableau.submit()
+    return
 
-  getColumnHeaders = ->
+  initiateTableau = ->
+    censusConnector.getColumnHeaders = ->
+      fieldNames = options['columnHeaders']['fieldNames']
+      fieldTypes = options['columnHeaders']['fieldTypes']
+      tableau.headersCallback(fieldNames, fieldTypes)
+      return
+    censusConnector.getTableData = options['tableDataCallback']
+    tableau.registerConnector(censusConnector)
+    return
 
-  getCensusData = (lastRecord)->
-
-  censusConnector = tableau.makeConnector();
-  censusConnector.getColumnHeaders = getColumnHeaders
-  censusConnector.getTableData = getCensusData
-  tableau.registerConnector(censusConnector)
-
-  init = ->
-    console.log "init"
+  censusConnector = tableau.makeConnector()
+  initiateTableau()
 
   return {
-    init: init
-    getData: getData
+    submit: submit
+    pushData: pushData
   }
 
 angular
