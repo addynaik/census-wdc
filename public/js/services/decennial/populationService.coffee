@@ -1,4 +1,4 @@
-statePopulationService = ($http, census_url, tableauService, statesService, countiesService)->
+statePopulationService = ($http, census_url, tableauService, statesService, countiesService, congressionalDistrictService)->
 
   selectedState = "24"
   selectedDataType = "zip"
@@ -10,7 +10,7 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
     tract:
       fieldNames: ["Population", "State", "County", "Tract", "Block Group"]
       fieldTypes: ['integer', 'string', 'string', 'string', 'string']
-    congressionaldistricts:
+    "congressional-district":
       fieldNames: ["Population", "State", "Congressional District", "Congressional District Code"]
       fieldTypes: ['integer', 'string', 'string', 'string']
 
@@ -29,6 +29,9 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
       when "tract"
         callback = getTractData
         byString = "County, Tract and Block Groups"
+      when "congressional-district"
+        callback = getCongressionalDistrictData
+        byString = "Congressional Districts"
     connectionData =
       name: "Census data for #{statesService.getState(state.id).name} by #{byString}"
       data: state.id
@@ -69,6 +72,21 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
       return
     return
 
+  getCongressionalDistrictData = ->
+    inVariable = "state:"+selectedState.id
+    $http.get census_url,
+      params:
+        get: 'P0010001'
+        for: 'congressional district:*'
+        in: inVariable
+    .then (response)->
+      dataToReturn = []
+      for row in response.data[1..]
+        dataToReturn.push [row[0], statesService.getState(row[1]).name, congressionalDistrictService.getCongressionalDistrict(row[1],row[2]).name, row[2]]
+      tableauService.pushData dataToReturn, dataToReturn.length.toString(), false
+      return
+    return
+
   return {
     getData: getData
   }
@@ -83,4 +101,4 @@ angular
         delete $httpProvider.defaults.headers.common['X-Requested-With']
   ]
 
-statePopulationService.$inject = ['$http', 'census_url', 'tableauService', 'statesService', 'countiesService']
+statePopulationService.$inject = ['$http', 'census_url', 'tableauService', 'statesService', 'countiesService', 'congressionalDistrictService']

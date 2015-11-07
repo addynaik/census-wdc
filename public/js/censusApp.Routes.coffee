@@ -14,6 +14,8 @@ angular
             statesService.downloadStatePromise()
           'countiesService' : (countiesService)->
             countiesService.downloadCountiesPromise()
+          'congressionalDistrictService' : (congressionalDistrictService)->
+            congressionalDistrictService.downloadCongressionalDistrictsPromise()
 
       $locationProvider.html5Mode true
       return
