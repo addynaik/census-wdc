@@ -31,13 +31,6 @@ tableauService = ($window)->
     return
 
   initiateTableau()
-  # censusConnector = tableau.makeConnector()
-  # censusConnector.getColumnHeaders = ->
-  #   tableau.headersCallback([], [])
-  #   return
-  # censusConnector.getTableData = ->
-  #   return
-  # tableau.registerConnector(censusConnector)
 
   return {
     submit: submit
