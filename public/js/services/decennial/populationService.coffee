@@ -20,16 +20,18 @@ statePopulationService = ($http, census_url, tableauService, statesService)->
   getData = (state, dataType)->
     selectedState = state
     selectedDataType = dataType
+    callback = null
     switch selectedDataType
       when "zip"
-        tableauService.submit getColumnHeaders(), getZipData
       # when "tract"
       #   getTractData(lastRecordToken)
+        callback = getZipCodeData
       # when "congressionaldistricts"
       #   getCongressionalDistrictData()
+    tableauService.submit getColumnHeaders(), callback
     return
 
-  getZipData = (lastRecordIndicator)->
+  getZipCodeData = (dummyLastRecordIndicator)->
     inVariable = "state:"+selectedState.id
 
     $http.get census_url,
