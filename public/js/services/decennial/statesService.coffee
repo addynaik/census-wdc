@@ -1,4 +1,3 @@
-
 statesService = ($http)->
   states = {}
 
@@ -44,7 +43,7 @@ statesService = ($http)->
   }
 
 angular
-  .module 'censusApp.Decennial'
+  .module 'censusApp.decennial'
   .factory 'statesService', statesService
 
 statesService.$inject = ['$http']

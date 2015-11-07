@@ -1,10 +1,11 @@
-DecennialByStateController = (statesService, tableauService) ->
+StateController = (statesService, tableauService) ->
   vm = this
   vm.states = []
   vm.dataType = 'zip'
 
   vm.getData = ->
     tableauService.getData vm.selectedState, vm.dataType
+    console.log "getting data"
 
   activateView = (states)->
     vm.states = states
@@ -24,7 +25,7 @@ DecennialByStateController = (statesService, tableauService) ->
   return
 
 angular
-  .module 'censusApp.Decennial'
-  .controller 'DecennialByStateController', DecennialByStateController
+  .module 'censusApp.decennial'
+  .controller 'stateController', StateController
 
-DecennialByStateController.$inject = ['statesService', 'tableauService']
+StateController.$inject = ['statesService', 'tableauService']

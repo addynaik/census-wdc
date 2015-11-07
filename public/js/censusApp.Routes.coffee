@@ -1,5 +1,5 @@
 angular
-  .module 'censusApp.Routes', []
+  .module 'censusApp.routes', []
   .config [
     '$routeProvider'
     '$locationProvider'

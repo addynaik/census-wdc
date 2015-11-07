@@ -13,7 +13,8 @@ tableauService = ($window)->
       fieldTypes: ['integer', 'string', 'string', 'string']
 
   getData = (state, dataType)->
-    tableau.submit();
+    # tableau.connectionName = "Census Data for " + (tableau.connectionData = $("#state").val());
+    tableau.submit()
 
   getColumnHeaders = ->
 
@@ -29,10 +30,11 @@ tableauService = ($window)->
 
   return {
     init: init
+    getData: getData
   }
 
 angular
-  .module 'tableau'
+  .module 'censusApp.tableau'
   .factory 'tableauService', tableauService
 
 tableauService.$inject = ['$window']
