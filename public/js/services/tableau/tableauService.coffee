@@ -12,10 +12,12 @@ tableauService = ($window)->
     tableau.dataCallback dataToReturn, lastRecordIndicator, more
     return
 
-  submit = (incolumnHeaders, intableDataCallback)->
+  submit = (incolumnHeaders, intableDataCallback, connectionData)->
     options['columnHeaders'] = incolumnHeaders
     options['tableDataCallback'] = intableDataCallback
     initiateTableau()
+    tableau.connectionName = connectionData.name
+    tableau.connectionData = connectionData.data
     tableau.submit()
     return
 
