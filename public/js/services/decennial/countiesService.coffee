@@ -13,7 +13,9 @@ countiesService = ($http)->
       for stateID,countiesData of data
         counties[stateID] ||= {}
         for countyID,county of countiesData
-          counties[stateID][countyID] = new County countyID, county
+          counties[stateID][countyID] =
+            id: countyID
+            name: county
 
     parseCountiesFailed = (error)->
       #console.log 'XHR Failed for countiesService.' + error.data
@@ -22,14 +24,6 @@ countiesService = ($http)->
     return $http.get '/json/counties.json'
       .then parseCounties
       .catch parseCountiesFailed
-
-  class County
-    id = null # numeric code
-    name = null # name
-
-    constructor: (id, name)->
-      @id = id
-      @name = name
 
   return {
     downloadCountiesPromise: downloadCountiesPromise
