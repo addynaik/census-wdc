@@ -6,7 +6,7 @@ angular
     ($routeProvider, $locationProvider) ->
       $routeProvider
       .when '/',
-        templateUrl: 'views/decennial/by-state.html'
+        redirectTo: '/decennial'
       .when '/decennial',
         templateUrl: 'views/decennial/by-state.html'
       $locationProvider.html5Mode true
