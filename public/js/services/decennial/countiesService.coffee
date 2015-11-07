@@ -1,14 +1,8 @@
 countiesService = ($http)->
   counties = {}
 
-  getCountyValues = (stateID)->
-    state for key, state of counties[stateID]
-
   getCounty = (stateID, countyID)->
     counties[stateID][countyID]
-
-  getCounties = ->
-    getCountyValues()
 
   getCountyKeys = (stateID)->
     key for key, state of counties[stateID]
@@ -39,7 +33,6 @@ countiesService = ($http)->
 
   return {
     downloadCountiesPromise: downloadCountiesPromise
-    getCounties: getCounties
     getCountyKeys: getCountyKeys
     getCounty: getCounty
   }
