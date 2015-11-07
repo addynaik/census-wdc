@@ -10,8 +10,7 @@ statesService = ($http)->
   getStates = ->
     getStatesValues()
 
-
-  downloadStates = ->
+  downloadStatePromise = ->
     parseStates = (response)->
       stateWithCodes = response.data[0]
       stateWithNames = response.data[1]
@@ -19,11 +18,10 @@ statesService = ($http)->
         states[key] = new State key, value, stateWithNames[value]
 
     parseStatesFailed = (error)->
-      console.log 'XHR Failed for getAvengers.' + error.data
+      console.log 'XHR Failed for statesService.' + error.data
 
     return $http.get '/json/states.json'
       .then parseStates
-      .then getStatesValues
       .catch parseStatesFailed
 
   class State
@@ -37,9 +35,9 @@ statesService = ($http)->
       @name = name
 
   return {
+    downloadStatePromise: downloadStatePromise
     getStates: getStates
     getState: getState
-    downloadStates: downloadStates
   }
 
 angular
