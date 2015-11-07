@@ -26,7 +26,7 @@ gulp.task 'jade',
 
 gulp.task 'coffee', ->
   gulp.src parameters.js_path+'/**/*.coffee'
-  .pipe coffee bare: true
+  .pipe coffee bare: false
   .on 'error', onError
   .pipe concat parameters.js_main_file
   .pipe gulp.dest parameters.dest.web_path+'/js'
