@@ -1,4 +1,4 @@
-statePopulationService = ($http, census_url, tableauService, statesService)->
+statePopulationService = ($http, census_url, tableauService, statesService, countiesService)->
 
   selectedState = "24"
   selectedDataType = "zip"
@@ -23,9 +23,9 @@ statePopulationService = ($http, census_url, tableauService, statesService)->
     callback = null
     switch selectedDataType
       when "zip"
-      # when "tract"
-      #   getTractData(lastRecordToken)
         callback = getZipCodeData
+      when "tract"
+        callback = getTractData
       # when "congressionaldistricts"
       #   getCongressionalDistrictData()
     tableauService.submit getColumnHeaders(), callback
@@ -46,6 +46,24 @@ statePopulationService = ($http, census_url, tableauService, statesService)->
       tableauService.pushData dataToReturn, dataToReturn.length.toString(), false
     return
 
+  getTractData = (countyIndex)->
+    countyIndex ||= 0
+    inVariable = "state:"+selectedState.id
+    counties = countiesService.getCountyKeys(selectedState.id)
+    $http.get census_url,
+      params:
+        get: 'P0010001'
+        for: 'block group:*'
+        in: inVariable+" county:"+counties[countyIndex]
+    .then (response)->
+      dataToReturn = []
+      for row in response.data[1..]
+        dataToReturn.push [row[0], statesService.getState(row[1]).name, countiesService.getCounty(row[1],row[2]).name, row[3], row[4]]
+      countyIndex = parseInt(countyIndex)+1
+      tableauService.pushData dataToReturn, countyIndex.toString(), countyIndex < counties.length
+      return
+    return
+
   return {
     getData: getData
   }
@@ -53,6 +71,11 @@ statePopulationService = ($http, census_url, tableauService, statesService)->
 angular
   .module 'censusApp.decennial'
   .factory 'statePopulationService', statePopulationService
+  .config [
+    '$httpProvider'
+    ($httpProvider)->
+        $httpProvider.defaults.useXDomain = true
+        delete $httpProvider.defaults.headers.common['X-Requested-With']
+  ]
 
-
-statePopulationService.$inject = ['$http', 'census_url', 'tableauService','statesService']
+statePopulationService.$inject = ['$http', 'census_url', 'tableauService', 'statesService', 'countiesService']

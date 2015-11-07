@@ -18,7 +18,8 @@ statesService = ($http)->
         states[key] = new State key, value, stateWithNames[value]
 
     parseStatesFailed = (error)->
-      console.log 'XHR Failed for statesService.' + error.data
+      #console.log 'XHR Failed for statesService.' + error.data
+      return
 
     return $http.get '/json/states.json'
       .then parseStates

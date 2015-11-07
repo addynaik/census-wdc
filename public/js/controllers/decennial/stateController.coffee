@@ -1,23 +1,26 @@
-StateController = (statesService, statePopulationService) ->
+StateController = (statesService, statePopulationService, tableauService) ->
   vm = this
   vm.states = []
   vm.dataType = 'zip'
 
   vm.getData = ->
     statePopulationService.getData vm.selectedState, vm.dataType
+    return
 
   activateView = (states)->
     vm.states = states
     vm.selectedState = statesService.getState("24")
+    return
 
   getStates = ->
     states = statesService.getStates()
     if states.length == 0
-      statesService.downloadStates()
+      statesService.downloadStatePromise()
         .then (data)->
           activateView(data)
     else
       activateView(states)
+    return
 
   getStates()
 
@@ -27,4 +30,4 @@ angular
   .module 'censusApp.decennial'
   .controller 'stateController', StateController
 
-StateController.$inject = ['statesService', 'statePopulationService']
+StateController.$inject = ['statesService', 'statePopulationService', 'tableauService']

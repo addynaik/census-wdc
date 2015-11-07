@@ -1,5 +1,6 @@
 tableauService = ($window)->
   tableau = $window.tableau
+  censusConnector = null
   options =
     columnHeaders:
       fieldNames: []
@@ -19,6 +20,7 @@ tableauService = ($window)->
     return
 
   initiateTableau = ->
+    censusConnector = tableau.makeConnector()
     censusConnector.getColumnHeaders = ->
       fieldNames = options['columnHeaders']['fieldNames']
       fieldTypes = options['columnHeaders']['fieldTypes']
@@ -28,8 +30,14 @@ tableauService = ($window)->
     tableau.registerConnector(censusConnector)
     return
 
-  censusConnector = tableau.makeConnector()
   initiateTableau()
+  # censusConnector = tableau.makeConnector()
+  # censusConnector.getColumnHeaders = ->
+  #   tableau.headersCallback([], [])
+  #   return
+  # censusConnector.getTableData = ->
+  #   return
+  # tableau.registerConnector(censusConnector)
 
   return {
     submit: submit

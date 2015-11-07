@@ -12,6 +12,9 @@ angular
         resolve:
           'statesService' : (statesService)->
             statesService.downloadStatePromise()
+          'countiesService' : (countiesService)->
+            countiesService.downloadCountiesPromise()
+
       $locationProvider.html5Mode true
       return
   ]
