@@ -2,7 +2,7 @@ statesService = ($http)->
   states = {}
 
   getStatesValues = ->
-    state for key, state of states
+    state for id, state of states
 
   getState = (stateID)->
     return states[stateID]
@@ -14,8 +14,11 @@ statesService = ($http)->
     parseStates = (response)->
       stateWithCodes = response.data[0]
       stateWithNames = response.data[1]
-      for key,value of stateWithCodes
-        states[key] = new State key, value, stateWithNames[value]
+      for id, code of stateWithCodes
+        states[id] =
+          id: id
+          code: code
+          name: stateWithNames[code]
 
     parseStatesFailed = (error)->
       #console.log 'XHR Failed for statesService.' + error.data
@@ -24,16 +27,6 @@ statesService = ($http)->
     return $http.get '/json/states.json'
       .then parseStates
       .catch parseStatesFailed
-
-  class State
-    id = null # numeric code
-    code = null # 2 digit alpha code
-    name = null # name
-
-    constructor: (id, code, name)->
-      @id = id
-      @code = code
-      @name = name
 
   return {
     downloadStatePromise: downloadStatePromise
