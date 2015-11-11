@@ -8,6 +8,8 @@ angular
       .when '/',
         redirectTo: '/decennial'
       .when '/decennial',
+        redirectTo: '/decennial/by-state'
+      .when '/decennial/by-state',
         templateUrl: 'views/decennial/by-state.html'
         resolve:
           'statesService' : (statesService)->
