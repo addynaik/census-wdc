@@ -2,8 +2,9 @@ angular
   .module 'censusApp', [
     'ngRoute'
     'censusApp.routes'
-    'censusApp.decennial'
     'censusApp.tableau'
+    'censusApp.decennial'
+    'censusApp.acs'
   ]
   .constant('decennial_url', 'http://api.census.gov/data/2010/sf1')
   .config [
