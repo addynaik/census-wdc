@@ -1,4 +1,4 @@
-statePopulationService = ($http, census_url, tableauService, statesService, countiesService, congressionalDistrictService)->
+statePopulationService = ($http, decennial_url, tableauService, statesService, countiesService, congressionalDistrictService)->
 
   selectedState = "24"
   selectedDataType = "zip"
@@ -42,7 +42,7 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
   getZipCodeData = (dummyLastRecordIndicator)->
     inVariable = "state:"+selectedState.id
 
-    $http.get census_url,
+    $http.get decennial_url,
       params:
         get: 'P0010001'
         for: 'zip code tabulation area:*'
@@ -58,7 +58,7 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
     countyIndex ||= 0
     inVariable = "state:"+selectedState.id
     counties = countiesService.getCountyKeys(selectedState.id)
-    $http.get census_url,
+    $http.get decennial_url,
       params:
         get: 'P0010001'
         for: 'block group:*'
@@ -74,7 +74,7 @@ statePopulationService = ($http, census_url, tableauService, statesService, coun
 
   getCongressionalDistrictData = ->
     inVariable = "state:"+selectedState.id
-    $http.get census_url,
+    $http.get decennial_url,
       params:
         get: 'P0010001'
         for: 'congressional district:*'
@@ -101,4 +101,4 @@ angular
         delete $httpProvider.defaults.headers.common['X-Requested-With']
   ]
 
-statePopulationService.$inject = ['$http', 'census_url', 'tableauService', 'statesService', 'countiesService', 'congressionalDistrictService']
+statePopulationService.$inject = ['$http', 'decennial_url', 'tableauService', 'statesService', 'countiesService', 'congressionalDistrictService']
