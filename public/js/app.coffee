@@ -1,6 +1,7 @@
 angular
   .module 'censusApp', [
     'ngRoute'
+    'ui.bootstrap'
     'censusApp.routes'
     'censusApp.tableau'
     'censusApp.decennial'
