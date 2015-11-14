@@ -32,7 +32,7 @@ countiesService = ($http)->
   }
 
 angular
-  .module 'censusApp.decennial'
+  .module 'censusApp.common'
   .factory 'countiesService', countiesService
 
 countiesService.$inject = ['$http']

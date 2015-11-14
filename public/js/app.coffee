@@ -4,6 +4,7 @@ angular
     'ui.bootstrap'
     'censusApp.routes'
     'censusApp.tableau'
+    'censusApp.common'
     'censusApp.decennial'
     'censusApp.acs'
   ]

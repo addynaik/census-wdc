@@ -35,7 +35,7 @@ statesService = ($http)->
   }
 
 angular
-  .module 'censusApp.decennial'
+  .module 'censusApp.common'
   .factory 'statesService', statesService
 
 statesService.$inject = ['$http']

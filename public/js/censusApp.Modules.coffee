@@ -1,6 +1,14 @@
 angular
   .module 'censusApp.tableau',[]
 angular
-  .module 'censusApp.decennial', ['censusApp.tableau']
+  .module 'censusApp.common',[]
 angular
-  .module 'censusApp.acs', ['censusApp.tableau']
+  .module 'censusApp.decennial', [
+    'censusApp.common'
+    'censusApp.tableau'
+  ]
+angular
+  .module 'censusApp.acs', [
+    'censusApp.common'
+    'censusApp.tableau'
+  ]
