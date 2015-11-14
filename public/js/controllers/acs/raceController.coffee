@@ -1,8 +1,9 @@
 RaceController = (tableauService) ->
-  vm = this
-  vm.dataType = 'zip'
   $("ul.nav .active").removeClass("active")
   $("li.acs").addClass("active")
+
+  vm = this
+  vm.dataType = 'zip'
 
 angular
   .module 'censusApp.acs'

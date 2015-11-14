@@ -1,9 +1,10 @@
 StateController = (statesService, statePopulationService, tableauService) ->
+  $("ul.nav .active").removeClass("active")
+  $("li.decennial").addClass("active")
+
   vm = this
   vm.states = []
   vm.dataType = 'zip'
-  $("ul.nav .active").removeClass("active")
-  $("li.decennial").addClass("active")
 
   vm.getData = ->
     statePopulationService.getData vm.selectedState, vm.dataType
