@@ -18,6 +18,10 @@ angular
             countiesService.downloadCountiesPromise()
           'congressionalDistrictService' : (congressionalDistrictService)->
             congressionalDistrictService.downloadCongressionalDistrictsPromise()
+      .when '/acs',
+        redirectTo: '/acs/by-race'
+      .when '/acs/by-race',
+        templateUrl: 'views/acs/by-race.html'
 
       $locationProvider.html5Mode true
       return
