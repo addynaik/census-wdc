@@ -1,4 +1,4 @@
-RaceController = (tableauService) ->
+RaceController =  ->
   $("ul.nav .active").removeClass("active")
   $("li.acs").addClass("active")
 
@@ -9,4 +9,4 @@ angular
   .module 'censusApp.acs'
   .controller 'raceController', RaceController
 
-RaceController.$inject = ['tableauService']
+RaceController.$inject = []

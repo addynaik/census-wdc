@@ -1,4 +1,4 @@
-StateController = (statesService, statePopulationService, tableauService) ->
+StateController = (statesService, statePopulationService) ->
   $("ul.nav .active").removeClass("active")
   $("li.decennial").addClass("active")
 
@@ -33,4 +33,4 @@ angular
   .module 'censusApp.decennial'
   .controller 'stateController', StateController
 
-StateController.$inject = ['statesService', 'statePopulationService', 'tableauService']
+StateController.$inject = ['statesService', 'statePopulationService']
