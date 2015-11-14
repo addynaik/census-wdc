@@ -16,8 +16,7 @@ onError = (err)->
   gutil.log err.message
   this.end()
 
-gulp.task 'jade',
-  ['bower','vendor'],->
+gulp.task 'jade', ->
   gulp.src parameters.view_path + '/**/*.jade'
   .pipe jade pretty: true
   .on 'error', onError
