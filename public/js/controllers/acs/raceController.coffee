@@ -5,6 +5,8 @@ RaceController =  ->
   vm = this
   vm.dataType = 'zip'
 
+  return
+
 angular
   .module 'censusApp.acs'
   .controller 'raceController', RaceController
