@@ -10,15 +10,16 @@
             .radio
               label
                 input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-zip" value="zip") 
-                | Population by Zip Code
-            .radio
-              label
-                input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-tract" value="tract") 
-                | Population by County, Tract and Block Group
-            .radio
-              label
-                input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-congressional-district" value="congressional-district") 
-                | Population by Congressional Districts
+                | Population by Zip Code 
+                span.label.label-warning very slow
+            //- .radio
+            //-   label
+            //-     input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-tract" value="tract") 
+            //-     | Population by County, Tract and Block Group
+            //- .radio
+            //-   label
+            //-     input(type="radio" ng-model="vm.dataType" name="data-type" id="data-type-congressional-district" value="congressional-district") 
+            //-     | Population by Congressional Districts
         .form-group
           .col-xs-8.col-xs-offset-4
             button#get-data.btn.btn-success(ng-click="vm.getData()") Get Data
