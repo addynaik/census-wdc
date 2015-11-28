@@ -31,6 +31,10 @@ gulp.task 'coffee', ->
   .pipe gulp.dest parameters.dest.web_path+'/js'
   .on 'error', onError
 
+gulp.task 'json', ->
+  gulp.src parameters.json_path+'/**/*.json'
+  .pipe gulp.dest parameters.dest.web_path + '/json'
+
 gulp.task 'less', ->
   gulp.src [parameters.style_main_file]
   .pipe less paths: [ path.join(__dirname), parameters.bower_components_path, parameters.themes_path ]
@@ -61,7 +65,7 @@ gulp.task 'vendor', ->
       .pipe gulp.dest parameters.dest.web_path+'/js'
       .on 'error', onError
 
-gulp.task 'build', ['jade','coffee','less','bower','vendor']
+gulp.task 'build', ['jade','coffee','less','bower','vendor','json']
 
 gulp.task 'watch', ['build'], # After all build tasks are done
   ->

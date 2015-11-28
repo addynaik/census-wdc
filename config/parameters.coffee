@@ -12,6 +12,7 @@ config =
   style_main_file: web_path + '/styles/app.less'
   js_path: web_path + '/js'
   js_main_file: 'app.js'
+  json_path: web_path + '/json'
   view_path: web_path + '/views'
   bower_main_file: 'bower-vendor.js'
   bower_components_path: 'bower_components'

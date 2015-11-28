@@ -1,26 +1,32 @@
 {
   "name": "starter-node-angular",
   "main": "server.js",
+  "engines": {
+    "node": "4.2.1"
+  },
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "method-override": "^2.3.5",
-    "mongoose": "^4.2.3"
-  },
-  "devDependencies": {
+    "mongoose": "^4.2.3",
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-jade": "^1.1.0",
     "gulp-less": "^3.0.3",
-    "gulp-nodemon": "^2.0.4",
     "gulp-rev": "^6.0.1",
     "gulp-serve": "^1.2.0",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
     "main-bower-files": "^2.9.0",
-    "nodemon": "^1.8.0"
+    "bower": "^1.6.5",
+    "gulp-nodemon": "^2.0.4",
+    "nodemon": "^1.8.0",
+    "gulp-watch": "^4.3.5"
+  },
+  "scripts": {
+    "postinstall": "bower install && gulp build",
+    "start": "nf start"
   }
 }
